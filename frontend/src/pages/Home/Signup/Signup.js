@@ -76,7 +76,7 @@ export default function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div>
-                <button className='btn' type='submit'>submit</button>
+                <button className='login' type='submit'>submit</button>
               </div>
               <br />
               <div className='google-button'>
@@ -89,7 +89,7 @@ export default function Signup() {
               to='/login' style={{
                 textDecoration: 'none',
                 color: 'skybule'
-              }}><b className='login'>login</b></Link>
+              }}><b className='ln'>login</b></Link>
           </div>
           </form>
 
