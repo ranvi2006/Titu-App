@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import tituImage from '../../../assets/images/spidoImage.jpg'
-import BlurOnIcon from '@mui/icons-material/BlurOn';
+import { useNavigate } from 'react-router-dom';
+
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-import './Login.css';
+import './Login.css';import GoogleButton from 'react-google-button';
+// import Login from '../Login/Login';
+import { Link } from 'react-router-dom';
 
 
 export default function Login() {
+  const navigate=useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,10 +44,16 @@ export default function Login() {
   }
   //---------------------------------
 
-  const handleSubmit = e => {
+  const handleSubmit =async (e) => {
+    if (!email || !password) {
+      // Display error message or prevent sign-in action
+      return;
+    }
     e.preventDefault();
     console.log(email, password);
-    SignInWithEmailAndPassword(email, password);
+     await SignInWithEmailAndPassword(email, password);
+     navigate('/home');
+
   }
   return (
     <>
@@ -72,8 +81,20 @@ export default function Login() {
                 placeholder='password'
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="submit" className='login'>login</button>
+             <button  type="submit" className='login'>login</button>
              
+              <div className='google-button'>
+                <GoogleButton className='g-btn'
+                  type='light' />
+              </div>
+              <div className='another'>
+             Donn't have an account?
+            <Link
+              to='/Signup' style={{
+                textDecoration: 'none',
+                color: 'skybule'
+              }}><b className='ln'>Signup</b></Link>
+          </div>
 
             </form>
           </div>

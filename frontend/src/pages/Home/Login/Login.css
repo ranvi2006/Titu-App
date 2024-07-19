@@ -80,3 +80,21 @@ background-color: rgb(150, 149, 149);
    margin-left: 35%;
 }
 
+.google-button{
+    position: relative;
+    margin-top: 7%;
+    margin-left: 7%;
+    
+}
+
+.another{
+    position: relative;
+color: white;
+    margin-top: 7%;
+    margin-left: 16%;
+    
+}
+.ln{
+    color: greenyellow;
+}
+

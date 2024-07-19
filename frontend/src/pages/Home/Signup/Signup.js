@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import BlurOnIcon from '@mui/icons-material/BlurOn';
-import tituImage from '../../../assets/images/spidoImage.jpg';
+import { useNavigate } from 'react-router-dom';
+
 import auth from '../../../firebase.init';
 import GoogleButton from 'react-google-button';
-import Login from '../Login/Login';
+// import Login from '../Login/Login';
 import { Link } from 'react-router-dom';
 import './Signup.css';
 
 export default function Signup() {
+  const navigate=useNavigate();
   const [userName, setUserName] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -39,10 +40,17 @@ export default function Signup() {
   }
   //----------------------------------------------
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
+    if (!email || !password) {
+      // Display error message or prevent sign-in action
+      return;
+    }
     e.preventDefault();
     console.log(fullName, userName, email, password);
-    createSignUpWithEmailAndPassword(email, password);
+      createSignUpWithEmailAndPassword(email, password);
+     navigate('/');
+     
+
   }
 
   return (
@@ -56,7 +64,7 @@ export default function Signup() {
             <form className="form" onSubmit={handleSubmit}>
             <h1>Welcome To Spido-World</h1>
               <input type='text'
-                className='userName'
+                className='@userName'
                 placeholder='userName'
                 onChange={(e) => setUserName(e.target.value)}
               />
@@ -76,20 +84,20 @@ export default function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div>
-                <button className='login' type='submit'>submit</button>
+                <button className='login' type='submit'>Signup</button>
               </div>
-              <br />
-              <div className='google-button'>
+              <hr />
+                            <div className='google-button'>
                 <GoogleButton className='g-btn'
                   type='light' />
               </div>
               <div className='another'>
             already have an account?
             <Link
-              to='/login' style={{
+              to='/' style={{
                 textDecoration: 'none',
                 color: 'skybule'
-              }}><b className='ln'>login</b></Link>
+              }}><b className='ln'>Login</b></Link>
           </div>
           </form>
 
